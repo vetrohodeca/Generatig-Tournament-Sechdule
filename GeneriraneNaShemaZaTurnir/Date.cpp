@@ -135,7 +135,7 @@ Date::Date()
 		}
 	}
 
-	void Date::printDate()
+	void Date::printDate() const
 	{
 		if (getDay() < 10)
 		{
@@ -177,7 +177,7 @@ Date::Date()
 	}
 
 	// 1- is for leap, 0 is not leap
-	bool Date::checkLeapYear(Date d)
+	bool Date::checkLeapYear(const Date d) 
 	{
 		int  year = d.getYear();
 
@@ -198,7 +198,7 @@ Date::Date()
 
 	}
 
-	void Date::monthTable(int months[12], Date d)
+	void Date::monthTable(int months[12], Date d) const
 	{
 		daysOfMonths[0] = 31;
 		bool leap = d.checkLeapYear(d);
@@ -222,7 +222,7 @@ Date::Date()
 		daysOfMonths[11] = 31;
 	}
 
-	int Date::DaysInMonth(Date d)
+	int Date::DaysInMonth(const Date d) 
 	{
 		int days[] = { -1, 31,28,31,30,31,30,31,31,30,31,30,31 };
 

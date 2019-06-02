@@ -1,7 +1,7 @@
 #include"String.h"
 #include<iostream>
 #pragma warning(disable :4996)
-int MyString::getSize()
+int MyString::getSize() const
 {
 	int counter=0;
 	while (str[counter]!='\0')
@@ -81,4 +81,18 @@ void MyString::print()
 	 result.str[currLen + otherLen] = '\0';
 	 //result.print();
 	 return result;
+ }
+ bool MyString::operator==(const char* other)const
+ {
+	 int len1 = this->getSize();
+	 int len2 = strlen(other);
+	 if (len1 != len2) return false;
+	 for (size_t i = 0; i < len1; i++)
+	 {
+		 if (this->str[i] != other[i])
+		 {
+			 return false;
+		 }
+	 }
+	 return true;
  }

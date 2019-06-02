@@ -1,2 +1,10 @@
 ﻿  Source.cpp
+  Turnir.cpp
+c:\users\alex\source\repos\generiranenashemazaturnir\generiranenashemazaturnir\turnir.cpp(146): warning C4018: '<': signed/unsigned mismatch
+c:\users\alex\source\repos\generiranenashemazaturnir\generiranenashemazaturnir\turnir.cpp(156): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\alex\source\repos\generiranenashemazaturnir\generiranenashemazaturnir\turnir.cpp(157): warning C4018: '<': signed/unsigned mismatch
+c:\users\alex\source\repos\generiranenashemazaturnir\generiranenashemazaturnir\turnir.cpp(198): warning C4018: '<': signed/unsigned mismatch
+c:\users\alex\source\repos\generiranenashemazaturnir\generiranenashemazaturnir\turnir.cpp(209): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+c:\users\alex\source\repos\generiranenashemazaturnir\generiranenashemazaturnir\turnir.cpp(210): warning C4018: '<': signed/unsigned mismatch
+  Generating Code...
   GeneriraneNaShemaZaTurnir.vcxproj -> C:\Users\Alex\source\repos\GeneriraneNaShemaZaTurnir\Debug\GeneriraneNaShemaZaTurnir.exe

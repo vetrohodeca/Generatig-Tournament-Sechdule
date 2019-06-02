@@ -1,13 +1,13 @@
-#include<iostream>
 #include"Date.cpp"
+#include"Turnir.h"
 #include"String.h"
-using namespace std;
 int main()
 {
-	Date d(31, 12, 1999, 23, 45);
-	d.addMinutes(25);
-	d.printDate();
-
+	Date d(2, 6, 2019, 9, 00);
+	Tournament T(16 ,80,2,"Console",d);
+	Tournament* S= T.Create(elimination,T);
+	cout<<S->calculateMatches()<<" Matches   "<<S->getNumberOfCourts()<<" Courts   "<<S->getDurationOfMatch()<<"min is one match"<<endl;
+	S->MakeSchedule();
 	system("pause");
 	return 0;
 }

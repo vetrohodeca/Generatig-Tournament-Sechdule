@@ -1,0 +1,246 @@
+#include"Turnir.h"
+#include<cmath>
+#include<iostream>
+using namespace std;
+void Tournament::setNumberOfTeams(int numberOfTeams)
+{
+	this->numberOfTeams = numberOfTeams;
+}
+void Tournament::setMatchDuration(int matchDuration)
+{
+	this->matchDuration = matchDuration;
+}
+void Tournament::setNumberOfFreeCourts(int numberOfFreeCourts)
+{
+	this->numberOfFreeCourts = numberOfFreeCourts;
+}
+void Tournament::setScheme(type scheme)
+{
+	this->scheme = scheme;
+}
+void Tournament::setOutputType(MyString outputType)
+{
+	this->outputType = outputType;
+}
+void Tournament::setStartTime(Date StartTime)
+{
+	this->startTime = startTime;
+}
+int Tournament::getNumberOfCourts() const
+{
+	return this->numberOfFreeCourts;
+}
+int Tournament::getDurationOfMatch() const
+{
+	return this->matchDuration;
+}
+Date Tournament::getStartTime() const
+{
+	return this->startTime;
+}
+Tournament::Tournament()
+{
+	numberOfTeams = 2;
+	matchDuration = 60;
+	numberOfFreeCourts = 1;
+	scheme = elimination;
+	outputType = "Console";
+	startTime = Date(1, 6, 2018, 12, 00);
+}
+Tournament::Tournament(int numberOfTeams, int matchDuration, int numberOfFreeCourts, const MyString outputType, Date startTime)
+{
+	setNumberOfTeams(numberOfTeams);
+	setMatchDuration(matchDuration);
+	setNumberOfFreeCourts(numberOfFreeCourts);
+	setScheme(elimination);
+	setOutputType(outputType);
+	setStartTime(startTime);
+}
+Tournament::Tournament(int numberOfTeams, type Scheme, int matchDuration, int numberOfFreeCourts, const MyString outputType, Date startTime)
+{
+	setNumberOfTeams(numberOfTeams);
+	setMatchDuration(matchDuration);
+	setNumberOfFreeCourts(numberOfFreeCourts);
+	setScheme(elimination);
+	setOutputType(outputType);
+	setStartTime(startTime);
+}
+void Tournament::print()
+{
+	cout << "Number of teams: ";
+	cout << this->numberOfTeams << endl;
+	cout << "Match duration: ";
+	cout << this->matchDuration << endl;
+	cout << "Number of free courts: ";
+	cout << this->numberOfFreeCourts << endl;
+	cout << "Scheme: ";
+	if (this->scheme == 0)
+		cout << "Elimination";
+	cout << endl;
+	if (this->scheme == 1)
+		cout << "All vs all" << endl;
+	cout << "Output type: ";
+	this->outputType.print();
+	cout << "Starting Date: ";
+	this->startTime.printDate();
+}
+
+void Tournament::validation()
+{
+	if (numberOfTeams < 0)
+	{
+		throw("Error while setting number of teams");
+	}
+}
+int Tournament::calculateMatches()
+{
+	return 1;
+}
+void Tournament::makeSchedule()
+{
+	this->startTime.printDate();
+}
+void Tournament::output()
+{
+	if (this->outputType == "console")
+	{
+
+	}
+}
+Tournament* Tournament::Create(type Scheme, Tournament T)
+{
+	if (Scheme == 0)
+		return new EliminationTournament(T.numberOfTeams, T.matchDuration, T.numberOfFreeCourts, T.outputType, T.startTime);
+	if (Scheme == 1)
+		return new TeamVsTeam(T.numberOfTeams, Scheme, T.matchDuration, T.numberOfFreeCourts, T.outputType, T.startTime);
+	return nullptr;
+
+}
+
+EliminationTournament::EliminationTournament()
+{
+	this->scheme = elimination;
+}
+
+void EliminationTournament::validation(int numberOfTeams)
+{
+	bool flag = 0;
+	for (int i = 2; i <= 32; i *= 2)
+	{
+		if (numberOfTeams == i)
+		{
+			flag = 1;
+		}
+	}
+	if (flag == 0)
+	{
+		throw"Wrong number of teams";
+	}
+}
+
+EliminationTournament::EliminationTournament(int numberOfTeams, int matchDuration, int numberOfFreeCourts, const MyString outputType, Date StartTime)
+{
+	setNumberOfTeams(numberOfTeams);
+	setMatchDuration(matchDuration);
+	setNumberOfFreeCourts(numberOfFreeCourts);
+	setOutputType(outputType);
+	setStartTime(startTime);
+	validation(numberOfTeams);
+}
+int EliminationTournament::calculateMatches()
+{
+	int result = 0;
+	for (size_t i = 1; i < this->numberOfTeams; i *= 2)
+	{
+		result += i;
+	}
+	return result;
+}
+void EliminationTournament::makeSchedule()
+{
+	this->startTime.printDate();
+	int numberOfMatches = calculateMatches();
+	int numberOfLoops = ceil((double)numberOfMatches / (double)numberOfFreeCourts);
+	for (size_t i = 0; i<numberOfLoops; i++)
+	{
+
+		cout << "Match " << numberOfFreeCourts * i + 1 << "-" << (1 + i) * numberOfFreeCourts << " start at: ";
+		this->startTime.printDate();
+		this->startTime.addMinutes(matchDuration);
+	}
+}
+EliminationTournament::~EliminationTournament()
+{
+
+}
+
+
+
+
+
+
+
+TeamVsTeam::TeamVsTeam()
+{
+	this->scheme = allVsAll;
+}
+void TeamVsTeam::validation(int numberOfTeams)
+{
+	if (numberOfTeams > 32)
+	{
+		throw"Too much teams";
+	}
+}
+
+TeamVsTeam::TeamVsTeam(int numberOfTeams, type Scheme, int matchDuration, int numberOfFreeCourts, const MyString outputType, Date StartTime)
+{
+	setNumberOfTeams(numberOfTeams);
+	setScheme(Scheme);
+	setMatchDuration(matchDuration);
+	setNumberOfFreeCourts(numberOfFreeCourts);
+	setOutputType(outputType);
+	setStartTime(startTime);
+	validation(numberOfTeams);
+}
+int TeamVsTeam::calculateMatches()
+{
+	int result = 0;
+	for (size_t i = 1; i < numberOfTeams; i++)
+	{
+		result += i;
+
+	}
+	return result;
+}
+void TeamVsTeam::makeSchedule()
+{
+	char answer;
+	int numberOfMatches = calculateMatches();
+	int numberOfLoops = ceil((double)numberOfMatches / (double)numberOfFreeCourts);
+	for (size_t i = 0; i <numberOfLoops; i++)
+	{
+		cout << "Do you want to make a litle pause between matches?  Y/N   ";
+
+		cin >> answer;
+		if (answer == 'Y' || answer == 'y')
+		{
+			int interval;
+			cout << "Input minutes: ";
+			cin >> interval;
+			setMatchDuration(matchDuration + interval);
+		}
+		else
+		{
+			cout << "Okey!";
+		}
+		cout << "Match " << numberOfFreeCourts * i + 1 << "-" << (1 + i) * numberOfFreeCourts << " start at: ";
+		this->startTime.printDate();
+		this->startTime.addMinutes(matchDuration);
+	}
+
+}
+
+TeamVsTeam::~TeamVsTeam()
+{
+
+}

@@ -19,9 +19,9 @@ public:
 	void setMonth(int month);
 	int getYear() const;
 	void setYear(int year);
-	bool checkLeapYear(Date d);
+	bool checkLeapYear(const Date d);
 	void addMinutes(int minutes);
-	void printDate();
-	void monthTable(int months[12], Date d);
-	int DaysInMonth(Date d);
+	void printDate() const;
+	void monthTable(int months[12], Date d)const;
+	int DaysInMonth(const Date d) ;
 };
