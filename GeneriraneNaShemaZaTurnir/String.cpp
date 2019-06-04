@@ -1,6 +1,8 @@
 #include"String.h"
 #include<iostream>
+#include<fstream>
 #pragma warning(disable :4996)
+const int MAXBUFFERSIZE = 20;
 int MyString::getSize() const
 {
 	int counter=0;
@@ -95,4 +97,14 @@ void MyString::print()
 		 }
 	 }
 	 return true;
+ }
+ istream& operator >> (istream& IN, MyString& mystring)
+ {
+	 const int buffSz = MAXBUFFERSIZE;
+	 char buff[buffSz];
+	 IN.get(buff, buffSz, '\n');
+	 mystring = MyString(buff);
+	 IN.clear();
+	 IN.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+	 return IN;
  }

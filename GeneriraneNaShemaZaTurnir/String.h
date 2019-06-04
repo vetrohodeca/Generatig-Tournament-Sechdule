@@ -1,4 +1,6 @@
 #pragma once
+#include<fstream>
+using namespace std;
 class MyString
 {
 private:
@@ -15,4 +17,5 @@ public:
 	void CopyFrom(const MyString& other);
 	void print();
 	int getSize()const;
+	friend istream& operator >> (istream& IN, MyString& mystring);
 };

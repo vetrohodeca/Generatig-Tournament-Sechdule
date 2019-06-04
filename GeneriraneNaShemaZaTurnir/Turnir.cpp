@@ -24,7 +24,7 @@ void Tournament::setOutputType(MyString outputType)
 }
 void Tournament::setStartTime(Date StartTime)
 {
-	this->startTime = startTime;
+	this->startTime = StartTime;
 }
 int Tournament::getNumberOfCourts() const
 {
@@ -56,7 +56,7 @@ Tournament::Tournament(int numberOfTeams, int matchDuration, int numberOfFreeCou
 	setOutputType(outputType);
 	setStartTime(startTime);
 }
-Tournament::Tournament(int numberOfTeams, type Scheme, int matchDuration, int numberOfFreeCourts, const MyString outputType, Date startTime)
+Tournament::Tournament(int numberOfTeame, type Scheme, int matchDuration, int numberOfFreeCourts, const MyString outputType, Date startTime)
 {
 	setNumberOfTeams(numberOfTeams);
 	setMatchDuration(matchDuration);
@@ -75,47 +75,26 @@ void Tournament::print()
 	cout << this->numberOfFreeCourts << endl;
 	cout << "Scheme: ";
 	if (this->scheme == 0)
-		cout << "Elimination";
+		cout << "Elimination ";
 	cout << endl;
 	if (this->scheme == 1)
-		cout << "All vs all" << endl;
+		cout << "All vs all " << endl;
 	cout << "Output type: ";
 	this->outputType.print();
 	cout << "Starting Date: ";
 	this->startTime.printDate();
 }
 
-void Tournament::validation()
-{
-	if (numberOfTeams < 0)
-	{
-		throw("Error while setting number of teams");
-	}
-}
-int Tournament::calculateMatches()
-{
-	return 1;
-}
-void Tournament::makeSchedule()
-{
-	this->startTime.printDate();
-}
-void Tournament::output()
-{
-	if (this->outputType == "console")
-	{
 
-	}
-}
-Tournament* Tournament::Create(type Scheme, Tournament T)
+Tournament* Tournament::create(type Scheme, int numberOfTeams, int matchDuration, int numberOfFreeCourts, const MyString outputType, Date startTime)
 {
-	if (Scheme == 0)
-		return new EliminationTournament(T.numberOfTeams, T.matchDuration, T.numberOfFreeCourts, T.outputType, T.startTime);
-	if (Scheme == 1)
-		return new TeamVsTeam(T.numberOfTeams, Scheme, T.matchDuration, T.numberOfFreeCourts, T.outputType, T.startTime);
+	if (Scheme == type::elimination)
+		return new EliminationTournament(numberOfTeams, matchDuration, numberOfFreeCourts, outputType, startTime);
+	if (Scheme == type::allVsAll)
+		return new TeamVsTeam(numberOfTeams, Scheme, matchDuration, numberOfFreeCourts, outputType, startTime);
 	return nullptr;
-
 }
+
 
 EliminationTournament::EliminationTournament()
 {
@@ -144,7 +123,7 @@ EliminationTournament::EliminationTournament(int numberOfTeams, int matchDuratio
 	setMatchDuration(matchDuration);
 	setNumberOfFreeCourts(numberOfFreeCourts);
 	setOutputType(outputType);
-	setStartTime(startTime);
+	setStartTime(StartTime);
 	validation(numberOfTeams);
 }
 int EliminationTournament::calculateMatches()
@@ -173,8 +152,6 @@ EliminationTournament::~EliminationTournament()
 {
 
 }
-
-
 
 
 

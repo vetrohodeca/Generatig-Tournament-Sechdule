@@ -14,8 +14,8 @@ protected:
 	Date startTime;
 public:
 	Tournament();
-	Tournament(int numberOfTeams , int matchDuration, int numberOfFreeCourts, const MyString outputType, Date StartTime);
-	Tournament(int numberOfTeams, type Scheme ,int matchDuration, int numberOfFreeCourts, const MyString outputType, Date startTime);
+	Tournament(int numberOfTeams, int matchDuration, int numberOfFreeCourts, const MyString outputType, Date StartTime);
+	Tournament(int numberOfTeams, type Scheme, int matchDuration, int numberOfFreeCourts, const MyString outputType, Date startTime);
 	// funkciite =0
 	void setNumberOfTeams(int numberOfTeams);
 	void setMatchDuration(int matchDuration);
@@ -27,11 +27,10 @@ public:
 	int getDurationOfMatch() const;
 	Date getStartTime() const;
 	void print();
-	virtual void validation();
-	virtual int calculateMatches();
-	virtual void makeSchedule();
-	static Tournament* Create(type Scheme, Tournament T);// create object of new class with same member data
-	void output();
+	virtual void validation(int numberOfTeams) = 0;
+	virtual int calculateMatches() = 0;
+	virtual void makeSchedule() = 0;
+	static Tournament* create(type Scheme, int numberOfTeams, int matchDuration, int numberOfFreeCourts, const MyString outputType, Date startTime);// factory method
 };
 
 class EliminationTournament : public Tournament
@@ -45,13 +44,13 @@ public:
 	virtual ~EliminationTournament();
 };
 
-class TeamVsTeam : public Tournament
+class TeamVsTeam : public   Tournament
 {
 public:
 	TeamVsTeam();
 	TeamVsTeam(int numberOfTeams, type Scheme, int matchDuration, int numberOfFreeCourts, const MyString outputType, Date StartTime);
 	virtual void validation(int numberOfTeams);
-	virtual int calculateMatches(); 
+	virtual int calculateMatches();
 	virtual void makeSchedule();
 	virtual ~TeamVsTeam();
 };

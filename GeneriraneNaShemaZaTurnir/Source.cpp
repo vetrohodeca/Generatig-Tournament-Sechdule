@@ -1,13 +1,48 @@
 #include"Date.cpp"
 #include"Turnir.h"
 #include"String.h"
+#include"Clinet.h"
+#include "TournamentFactory.h"
 int main()
 {
-	Date d(2, 6, 2019, 9, 00);
-	Tournament T(16 ,80,2,"Console",d);
-	Tournament* S= T.Create(elimination,T);
-	cout<<S->calculateMatches()<<" Matches   "<<S->getNumberOfCourts()<<" Courts   "<<S->getDurationOfMatch()<<"min is one match"<<endl;
-	S->MakeSchedule();
+	int day, month, year, hour, min;
+	cout << "Input day: ";
+	cin >> day;
+	cout << "Input month: ";
+	cin >> month;
+	cout << "Input year: ";
+	cin >> year;
+	cout << "Input hour: ";
+	cin >> hour;
+	cout << "Input minutes: ";
+	cin >> min;
+	int numberOfTeams;
+	cout << "Number of teams: ";
+	cin >> numberOfTeams;
+	int matchDuration;
+	cout << "Input match duration: ";
+	cin >> matchDuration;
+	int numberOfFreeCourts;
+	cout << "Number of free courts: ";
+	cin >> numberOfFreeCourts;
+	Date startTime(day, month,year, hour, min);
+	MyString outputType;
+	cout << "Input output type: ";
+	cin>> outputType;
+	type scheme;
+	bool schemeB;
+	cout << "Input 0 for elimination and 1 for AllVsAll! ";
+	cin >> schemeB;
+	if (schemeB == 0)
+	{
+		scheme = elimination;
+	}
+	else  scheme= allVsAll;
+	Tournament * pTournament = TournamentFactory::create(scheme, numberOfTeams, matchDuration, numberOfFreeCourts, outputType, startTime);
+	cout << pTournament->calculateMatches() << " Matches   " << pTournament->getNumberOfCourts() << " Courts   "
+		<< pTournament->getDurationOfMatch() << "min is one match" << endl;
+	pTournament->makeSchedule();
+
 	system("pause");
 	return 0;
 }
