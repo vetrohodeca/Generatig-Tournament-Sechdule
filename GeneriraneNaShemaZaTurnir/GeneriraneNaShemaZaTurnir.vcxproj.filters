@@ -21,18 +21,15 @@
     <ClCompile Include="String.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Turnir.cpp">
+    <ClCompile Include="TournamentFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TournamentFactory.cpp">
+    <ClCompile Include="Tournament.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="String.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Turnir.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Date.h">
@@ -43,6 +40,9 @@
     </ClInclude>
     <ClInclude Include="Date.cpp">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tournament.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

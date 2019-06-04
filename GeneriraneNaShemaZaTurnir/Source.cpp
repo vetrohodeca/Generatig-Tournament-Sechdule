@@ -1,7 +1,6 @@
 #include"Date.cpp"
-#include"Turnir.h"
+#include"Tournament.h"
 #include"String.h"
-#include"Clinet.h"
 #include "TournamentFactory.h"
 int main()
 {
@@ -29,6 +28,7 @@ int main()
 	MyString outputType;
 	cout << "Input output type: ";
 	cin>> outputType;
+	cin >> outputType;
 	type scheme;
 	bool schemeB;
 	cout << "Input 0 for elimination and 1 for AllVsAll! ";
@@ -39,9 +39,13 @@ int main()
 	}
 	else  scheme= allVsAll;
 	Tournament * pTournament = TournamentFactory::create(scheme, numberOfTeams, matchDuration, numberOfFreeCourts, outputType, startTime);
-	cout << pTournament->calculateMatches() << " Matches   " << pTournament->getNumberOfCourts() << " Courts   "
-		<< pTournament->getDurationOfMatch() << "min is one match" << endl;
-	pTournament->makeSchedule();
+	if (pTournament->getOutputType()=="console")
+	{
+		cout << pTournament->calculateMatches() << " Matches   " << pTournament->getNumberOfCourts() << " Courts   "
+			<< pTournament->getDurationOfMatch() << "min is one match" << endl;
+		pTournament->makeSchedule();
+	}
+	
 
 	system("pause");
 	return 0;

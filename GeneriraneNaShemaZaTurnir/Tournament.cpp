@@ -1,4 +1,4 @@
-#include"Turnir.h"
+#include"Tournament.h"
 #include<cmath>
 #include<iostream>
 using namespace std;
@@ -25,6 +25,10 @@ void Tournament::setOutputType(MyString outputType)
 void Tournament::setStartTime(Date StartTime)
 {
 	this->startTime = StartTime;
+}
+MyString Tournament::getOutputType() const
+{
+	return this->outputType;
 }
 int Tournament::getNumberOfCourts() const
 {
@@ -91,7 +95,7 @@ Tournament* Tournament::create(type Scheme, int numberOfTeams, int matchDuration
 	if (Scheme == type::elimination)
 		return new EliminationTournament(numberOfTeams, matchDuration, numberOfFreeCourts, outputType, startTime);
 	if (Scheme == type::allVsAll)
-		return new TeamVsTeam(numberOfTeams, Scheme, matchDuration, numberOfFreeCourts, outputType, startTime);
+		return new TeamVsTeam(numberOfTeams, matchDuration, numberOfFreeCourts, outputType, startTime);
 	return nullptr;
 }
 
@@ -143,7 +147,11 @@ void EliminationTournament::makeSchedule()
 	for (size_t i = 0; i<numberOfLoops; i++)
 	{
 
-		cout << "Match " << numberOfFreeCourts * i + 1 << "-" << (1 + i) * numberOfFreeCourts << " start at: ";
+		if ((1 + i) * numberOfFreeCourts > numberOfFreeCourts&&i == numberOfLoops-1)
+		{
+			cout << "Match " << numberOfFreeCourts * i + 1 << "-" << numberOfMatches * numberOfFreeCourts << " start at: ";
+		}
+		else cout << "Match " << numberOfFreeCourts * i + 1 << "-" << (1 + i) * numberOfFreeCourts << " start at: ";
 		this->startTime.printDate();
 		this->startTime.addMinutes(matchDuration);
 	}
@@ -169,14 +177,13 @@ void TeamVsTeam::validation(int numberOfTeams)
 	}
 }
 
-TeamVsTeam::TeamVsTeam(int numberOfTeams, type Scheme, int matchDuration, int numberOfFreeCourts, const MyString outputType, Date StartTime)
+TeamVsTeam::TeamVsTeam(int numberOfTeams, int matchDuration, int numberOfFreeCourts, const MyString outputType, Date StartTime)
 {
 	setNumberOfTeams(numberOfTeams);
-	setScheme(Scheme);
 	setMatchDuration(matchDuration);
 	setNumberOfFreeCourts(numberOfFreeCourts);
 	setOutputType(outputType);
-	setStartTime(startTime);
+	setStartTime(StartTime);
 	validation(numberOfTeams);
 }
 int TeamVsTeam::calculateMatches()
@@ -196,21 +203,28 @@ void TeamVsTeam::makeSchedule()
 	int numberOfLoops = ceil((double)numberOfMatches / (double)numberOfFreeCourts);
 	for (size_t i = 0; i <numberOfLoops; i++)
 	{
-		cout << "Do you want to make a litle pause between matches?  Y/N   ";
-
-		cin >> answer;
-		if (answer == 'Y' || answer == 'y')
+		if (i != 0)
 		{
-			int interval;
-			cout << "Input minutes: ";
-			cin >> interval;
-			setMatchDuration(matchDuration + interval);
+			cout << "Do you want to make a litle pause between matches?  Y/N   ";
+			cin >> answer;
+			if (answer == 'Y' || answer == 'y')
+			{
+				int interval;
+				cout << "Input minutes: ";
+				cin >> interval;
+				setMatchDuration(matchDuration + interval);
+				{
+					cout << "Okey!";
+				}
+			}
 		}
 		else
+			
+		if ((1 + i) * numberOfFreeCourts > numberOfFreeCourts&&i == numberOfLoops - 1)
 		{
-			cout << "Okey!";
+			cout << "Match " << numberOfFreeCourts * i + 1 << "-" << numberOfMatches * numberOfFreeCourts << " start at: ";
 		}
-		cout << "Match " << numberOfFreeCourts * i + 1 << "-" << (1 + i) * numberOfFreeCourts << " start at: ";
+		else cout << "Match " << numberOfFreeCourts * i + 1 << "-" << (1 + i) * numberOfFreeCourts << " start at: ";
 		this->startTime.printDate();
 		this->startTime.addMinutes(matchDuration);
 	}

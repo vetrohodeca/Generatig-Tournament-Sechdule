@@ -24,6 +24,7 @@ public:
 	void setOutputType(MyString outputType);
 	void setStartTime(Date startTime);
 	int getNumberOfCourts() const;
+	MyString getOutputType() const;
 	int getDurationOfMatch() const;
 	Date getStartTime() const;
 	void print();
@@ -48,7 +49,7 @@ class TeamVsTeam : public   Tournament
 {
 public:
 	TeamVsTeam();
-	TeamVsTeam(int numberOfTeams, type Scheme, int matchDuration, int numberOfFreeCourts, const MyString outputType, Date StartTime);
+	TeamVsTeam(int numberOfTeams, int matchDuration, int numberOfFreeCourts, const MyString outputType, Date StartTime);
 	virtual void validation(int numberOfTeams);
 	virtual int calculateMatches();
 	virtual void makeSchedule();

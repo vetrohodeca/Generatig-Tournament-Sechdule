@@ -116,7 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="TournamentFactory.cpp" />
-    <ClCompile Include="Turnir.cpp" />
+    <ClCompile Include="Tournament.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="String.cpp" />
   </ItemGroup>
@@ -125,7 +125,7 @@
     <ClInclude Include="Date.cpp" />
     <ClInclude Include="String.h" />
     <ClInclude Include="TournamentFactory.h" />
-    <ClInclude Include="Turnir.h" />
+    <ClInclude Include="Tournament.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
