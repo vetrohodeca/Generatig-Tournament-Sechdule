@@ -1,4 +1,5 @@
 #pragma once
+#include<fstream>
 #include"String.h"
 #include"Date.h"
 using namespace std;
@@ -12,11 +13,12 @@ protected:
 	type scheme;
 	MyString outputType;
 	Date startTime;
+	// композиция- имаме шаблон, в който като член данна на клас подаваме обект от друг тип
 public:
 	Tournament();
 	Tournament(int numberOfTeams, int matchDuration, int numberOfFreeCourts, const MyString outputType, Date StartTime);
 	Tournament(int numberOfTeams, type Scheme, int matchDuration, int numberOfFreeCourts, const MyString outputType, Date startTime);
-	// funkciite =0
+	// funkciite =0, класът е вирутален и от него не може да създаваме обекти
 	void setNumberOfTeams(int numberOfTeams);
 	void setMatchDuration(int matchDuration);
 	void setNumberOfFreeCourts(int numberOfFreeCourts);
@@ -30,28 +32,10 @@ public:
 	void print();
 	virtual void validation(int numberOfTeams) = 0;
 	virtual int calculateMatches() = 0;
-	virtual void makeSchedule() = 0;
-	static Tournament* create(type Scheme, int numberOfTeams, int matchDuration, int numberOfFreeCourts, const MyString outputType, Date startTime);// factory method
+	virtual void makeSchedule() = 0; // виртуални функции, защото имаме малка разлка във функционалността
+	virtual void makeScheduleFile() = 0;
+	// factory method
+	//// статична променлива, за да може да работи и от фактори класа
 };
 
-class EliminationTournament : public Tournament
-{
-public:
-	EliminationTournament();
-	EliminationTournament(int numberOfTeams, int matchDuration, int numberOfFreeCourts, const MyString outputType, Date StartTime);
-	virtual void validation(int numberOfTeams);
-	virtual int calculateMatches();
-	virtual void makeSchedule();
-	virtual ~EliminationTournament();
-};
 
-class TeamVsTeam : public   Tournament
-{
-public:
-	TeamVsTeam();
-	TeamVsTeam(int numberOfTeams, int matchDuration, int numberOfFreeCourts, const MyString outputType, Date StartTime);
-	virtual void validation(int numberOfTeams);
-	virtual int calculateMatches();
-	virtual void makeSchedule();
-	virtual ~TeamVsTeam();
-};

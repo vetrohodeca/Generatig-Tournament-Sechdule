@@ -115,14 +115,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EliminationTournament.cpp" />
+    <ClCompile Include="TeamVsTeam.cpp" />
     <ClCompile Include="TournamentFactory.cpp" />
     <ClCompile Include="Tournament.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="String.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="TeamVsTeam.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="Date.cpp" />
+    <ClInclude Include="EliminationTournament.h" />
     <ClInclude Include="String.h" />
     <ClInclude Include="TournamentFactory.h" />
     <ClInclude Include="Tournament.h" />

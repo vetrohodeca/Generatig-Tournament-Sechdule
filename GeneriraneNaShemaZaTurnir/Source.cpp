@@ -26,8 +26,8 @@ int main()
 	cin >> numberOfFreeCourts;
 	Date startTime(day, month,year, hour, min);
 	MyString outputType;
-	cout << "Input output type: ";
-	cin>> outputType;
+	cout << "Input output type (""console"" is the only one available for now): ";
+		cin>> outputType;
 	cin >> outputType;
 	type scheme;
 	bool schemeB;
