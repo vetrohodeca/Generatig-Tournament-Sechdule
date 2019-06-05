@@ -34,8 +34,6 @@ public:
 	virtual int calculateMatches() = 0;
 	virtual void makeSchedule() = 0; // виртуални функции, защото имаме малка разлка във функционалността
 	virtual void makeScheduleFile() = 0;
-	// factory method
-	//// статична променлива, за да може да работи и от фактори класа
 };
 
 

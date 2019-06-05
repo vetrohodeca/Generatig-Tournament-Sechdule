@@ -58,6 +58,7 @@ void EliminationTournament::makeSchedule()
 }
 void EliminationTournament::makeScheduleFile()
 {
+
 }
 EliminationTournament::~EliminationTournament()
 {

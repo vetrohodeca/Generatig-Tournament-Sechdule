@@ -6,14 +6,26 @@
 using namespace std;
 void Tournament::setNumberOfTeams(int numberOfTeams)
 {
+	if (numberOfTeams < 2)
+	{
+		this->numberOfTeams = 2;
+	}
 	this->numberOfTeams = numberOfTeams;
 }
 void Tournament::setMatchDuration(int matchDuration)
 {
+	if (matchDuration < 1)
+	{
+		this->matchDuration = 1;
+	}
 	this->matchDuration = matchDuration;
 }
 void Tournament::setNumberOfFreeCourts(int numberOfFreeCourts)
 {
+	if (numberOfFreeCourts < 1)
+	{
+		this->numberOfFreeCourts = 1;
+	}
 	this->numberOfFreeCourts = numberOfFreeCourts;
 }
 void Tournament::setScheme(type scheme)

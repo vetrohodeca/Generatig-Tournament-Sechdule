@@ -5,6 +5,7 @@
 int main()
 {
 	int day, month, year, hour, min;
+
 	cout << "Input day: ";
 	cin >> day;
 	cout << "Input month: ";
@@ -38,15 +39,15 @@ int main()
 		scheme = elimination;
 	}
 	else  scheme= allVsAll;
-	Tournament * pTournament = TournamentFactory::create(scheme, numberOfTeams, matchDuration, numberOfFreeCourts, outputType, startTime);
+
+	Tournament* pTournament = TournamentFactory::create(scheme, numberOfTeams, matchDuration, numberOfFreeCourts, outputType, startTime);
 	if (pTournament->getOutputType()=="console")
 	{
 		cout << pTournament->calculateMatches() << " Matches   " << pTournament->getNumberOfCourts() << " Courts   "
 			<< pTournament->getDurationOfMatch() << "min is one match" << endl;
 		pTournament->makeSchedule();
 	}
-	
-
+	delete pTournament;
 	system("pause");
 	return 0;
 }
