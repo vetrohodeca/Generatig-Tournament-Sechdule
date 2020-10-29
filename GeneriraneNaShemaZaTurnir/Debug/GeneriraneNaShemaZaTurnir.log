@@ -1,15 +1,18 @@
 ﻿  EliminationTournament.cpp
-c:\users\alex\source\repos\generiranenashemazaturnir\generiranenashemazaturnir\eliminationtournament.cpp(36): warning C4018: '<': signed/unsigned mismatch
-c:\users\alex\source\repos\generiranenashemazaturnir\generiranenashemazaturnir\eliminationtournament.cpp(46): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-c:\users\alex\source\repos\generiranenashemazaturnir\generiranenashemazaturnir\eliminationtournament.cpp(47): warning C4018: '<': signed/unsigned mismatch
-c:\users\alex\source\repos\generiranenashemazaturnir\generiranenashemazaturnir\eliminationtournament.cpp(50): warning C4018: '>': signed/unsigned mismatch
-  Source.cpp
+C:\Users\Alex\source\repos\GeneriraneNaShemaZaTurnir\GeneriraneNaShemaZaTurnir\EliminationTournament.cpp(36,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Alex\source\repos\GeneriraneNaShemaZaTurnir\GeneriraneNaShemaZaTurnir\EliminationTournament.cpp(46,20): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Alex\source\repos\GeneriraneNaShemaZaTurnir\GeneriraneNaShemaZaTurnir\EliminationTournament.cpp(47,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Alex\source\repos\GeneriraneNaShemaZaTurnir\GeneriraneNaShemaZaTurnir\EliminationTournament.cpp(50,36): warning C4018: '>': signed/unsigned mismatch
   TeamVsTeam.cpp
-c:\users\alex\source\repos\generiranenashemazaturnir\generiranenashemazaturnir\teamvsteam.cpp(27): warning C4018: '<': signed/unsigned mismatch
-c:\users\alex\source\repos\generiranenashemazaturnir\generiranenashemazaturnir\teamvsteam.cpp(38): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-c:\users\alex\source\repos\generiranenashemazaturnir\generiranenashemazaturnir\teamvsteam.cpp(39): warning C4018: '<': signed/unsigned mismatch
-c:\users\alex\source\repos\generiranenashemazaturnir\generiranenashemazaturnir\teamvsteam.cpp(56): warning C4018: '>': signed/unsigned mismatch
-  Tournament.cpp
+C:\Users\Alex\source\repos\GeneriraneNaShemaZaTurnir\GeneriraneNaShemaZaTurnir\TeamVsTeam.cpp(27,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Alex\source\repos\GeneriraneNaShemaZaTurnir\GeneriraneNaShemaZaTurnir\TeamVsTeam.cpp(38,20): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\Alex\source\repos\GeneriraneNaShemaZaTurnir\GeneriraneNaShemaZaTurnir\TeamVsTeam.cpp(39,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Alex\source\repos\GeneriraneNaShemaZaTurnir\GeneriraneNaShemaZaTurnir\TeamVsTeam.cpp(56,38): warning C4018: '>': signed/unsigned mismatch
   TournamentFactory.cpp
+  Tournament.cpp
+  Source.cpp
+  String.cpp
+C:\Users\Alex\source\repos\GeneriraneNaShemaZaTurnir\GeneriraneNaShemaZaTurnir\String.cpp(44,24): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Alex\source\repos\GeneriraneNaShemaZaTurnir\GeneriraneNaShemaZaTurnir\String.cpp(92,24): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
   GeneriraneNaShemaZaTurnir.vcxproj -> C:\Users\Alex\source\repos\GeneriraneNaShemaZaTurnir\Debug\GeneriraneNaShemaZaTurnir.exe
